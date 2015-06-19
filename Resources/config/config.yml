@@ -1,0 +1,18 @@
+# This file is part of the CampaignChain package.
+#
+# (c) Sandro Groganz <sandro@campaignchain.com>
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+assetic:
+    bundles:
+        - CampaignChainOperationSlideShareBundle
+    assets:
+        campaignchain_operation_slideshare_css:
+            inputs:
+                - '@CampaignChainOperationSlideShareBundle/Resources/public/css/slideshare.css'
+twig:
+    form:
+        resources:
+            - 'CampaignChainOperationSlideShareBundle:Form:fields.html.twig'

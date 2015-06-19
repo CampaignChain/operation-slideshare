@@ -1,0 +1,14 @@
+
+modules:
+    campaignchain-slideshare:
+        display_name: Publish SlideShare slideshow
+        description: This module publishes a slideshow on SlideShare
+        services: 
+            report: campaignchain.job.report.slideshare
+        params: 
+            owns_location: true
+        metrics:
+            activity:
+                - "Views"
+                - "Likes"
+                - "Downloads"
