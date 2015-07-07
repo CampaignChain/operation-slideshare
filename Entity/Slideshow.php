@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="campaignchain_operation_slideshow")
+ * @ORM\Table(name="campaignchain_operation_slideshare_slideshow")
  */
 class Slideshow extends Meta
 {

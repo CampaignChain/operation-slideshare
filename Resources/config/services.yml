@@ -12,3 +12,7 @@ services:
     campaignchain.operation.slideshare.slideshow:
         class: CampaignChain\Operation\SlideShareBundle\EntityService\Slideshow
         arguments: [ @doctrine.orm.entity_manager ]
+    campaignchain.job.operation.slideshare.publish_slideshow:
+        class: CampaignChain\Operation\SlideShareBundle\Job\PublishSlideshow
+        arguments: [ @doctrine.orm.entity_manager, @service_container ]
+        

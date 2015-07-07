@@ -25,6 +25,7 @@ class SlideShareOperationType extends AbstractType
     protected $em;
     protected $container;
     private $location;
+    private $slideshows;
 
     public function __construct(EntityManager $em, ContainerInterface $container)
     {
@@ -44,17 +45,20 @@ class SlideShareOperationType extends AbstractType
         $this->location = $location;
     }
 
+    public function setSlideshows($slideshows){
+        $this->slideshows = $slideshows;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('url', 'text', array(
-                'property_path' => 'url',
-                'label' => 'Slideshow URL',
-                'attr' => array(
-                    'placeholder' => 'Enter URL to slideshow on slideshare.com...',
-                    'max_length' => 400
-                )
-            ));
+        $builder->add('slideshow', 'choice', array(
+            'choices'   => $this->slideshows,
+            'required'  => true,
+            'label' => 'Slideshow',
+            'attr' => array(
+                'placeholder' => 'Select a slideshow',
+            ),
+        ));
     }
 
     /**
@@ -71,18 +75,12 @@ class SlideShareOperationType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $defaults = array(
-            'data_class' => 'CampaignChain\Operation\SlideShareBundle\Entity\Slideshow',
-        );
-
-        if($this->status){
-            $defaults['data'] = $this->status;
-        }
+        $defaults = array();
         $resolver->setDefaults($defaults);
     }
 
     public function getName()
     {
-        return 'campaignchain_operation_slideshare';
+        return 'campaignchain_operation_slideshare_slideshow';
     }
 }
