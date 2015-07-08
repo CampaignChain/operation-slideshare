@@ -35,6 +35,16 @@ class Slideshow extends Meta
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $url;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $title;
+    
+    /**
+     * @ORM\Column(type="integer", length=255, nullable=true)
+     */
+    protected $identifier;
     
     /**
      * Get id
@@ -92,5 +102,36 @@ class Slideshow extends Meta
     {
         return $this->url;
     }
-    
+
+    /**
+     * @param mixed $identifier
+     */
+    public function setIdentifier($identifier)
+    {
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }  
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }     
 }

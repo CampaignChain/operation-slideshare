@@ -13,10 +13,10 @@ namespace CampaignChain\Operation\SlideShareBundle\Job;
 use CampaignChain\CoreBundle\Entity\Action;
 use Doctrine\ORM\EntityManager;
 use CampaignChain\CoreBundle\Entity\Medium;
-use CampaignChain\CoreBundle\Job\JobServiceInterface;
+use CampaignChain\CoreBundle\Job\JobOperationInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class PublishSlideshow implements JobServiceInterface
+class PublishSlideshow implements JobOperationInterface
 {
     protected $em;
     protected $container;
@@ -46,32 +46,37 @@ class PublishSlideshow implements JobServiceInterface
 
         if (!$slideshow) {
             throw new \Exception(
-              'No slideshow found for an operation with ID: '.$operationId
+                'No slideshow found for an operation with ID: '.$operationId
             );
         }    
+        
         $client = $this->container->get('campaignchain.channel.slideshare.rest.client');
         $connection = $client->connectByActivity(
-          $slideshow->getOperation()->getActivity()
+            $slideshow->getOperation()->getActivity()
         );    
-        $url = $slideshow->getUrl();
-        $response = $connection->getSlideshowByUrl($url);
-        $id = $response->{'ID'};
-        $connection = $client->publishSlideshow($id);    
+        $xml = $connection->publishUserSlideshow($slideshow->getIdentifier());
+
+        if ($xml->SlideShowID == $slideshow->getIdentifier()) {
+            $slideshow->getOperation()->setStatus(Action::STATUS_CLOSED);
+
+            $this->em->flush();
+
+            $this->message = 'The slideshow with the URL "'.
+              $slideshow->getUrl().'" has been made public on SlideShare. See it on SlideShare:
+              <a href="'.$slideshow->getUrl().'">'.$slideshow->getUrl().'</a>';
+
+            return self::STATUS_OK;     
+        } else {
+            // TODO: fix to handle various errors shown at http://www.slideshare.net/developers/documentation
+            if (strtolower($xml->Message) == 'slideshow not found') {
+            
+            } else if (strtolower($xml->Message) == 'failed api validation') {
+            
+            } else {
+            
+            }            
+        }
         
-        $slideshow->getOperation()->setStatus(Action::STATUS_CLOSED);
-
-        $location = $slideshow->getOperation()->getLocations()[0];
-        $location->setIdentifier($id);
-        $location->setUrl($url);
-        $location->setStatus(Medium::STATUS_ACTIVE);
-
-        $this->em->flush();
-
-        $this->message = 'The slideshow with the URL "'.
-          $url.'" has been made public on SlideShare. See it on SlideShare:
-          <a href="'.$url.'">'.$url.'</a>';
-
-        return self::STATUS_OK;        
     }
 
 }
