@@ -54,11 +54,11 @@ class SlideShareOperationType extends AbstractType
         $builder->add('slideshow', 'choice', array(
             'choices'   => $this->slideshows,
             'required'  => true,
-            'label' => 'Slideshow',
+            'label' => false,
             'attr' => array(
                 'placeholder' => 'Select a slideshow',
             ),
-        ));
+        ));     
     }
 
     /**
