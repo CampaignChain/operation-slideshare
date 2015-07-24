@@ -9,3 +9,21 @@ file that was distributed with this source code.
 
 {% extends 'CampaignChainCoreBundle:Operation:new.html.twig' %}
 
+{% block form_header_content %}
+  {% block operation %}
+
+      {% stylesheets '@campaignchain_operation_slideshare_css' %}
+      <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+      {% endstylesheets %}
+
+      {% include 'CampaignChainCoreBundle:Operation:field_header.html.twig' %}
+
+      <div class="embed-responsive embed-responsive-16by9">
+      {{ slideshow_embed|raw }}
+      </div>
+      
+      {% include 'CampaignChainCoreBundle:Operation:field_footer.html.twig' %}
+
+  {% endblock %}
+{% endblock %}
+
