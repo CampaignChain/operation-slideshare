@@ -1,8 +1,8 @@
 
 modules:
     campaignchain-slideshare:
-        display_name: Publish SlideShare slideshow
-        description: This module publishes a slideshow on SlideShare
+        display_name: Schedule slideshow
+        description: This module shedules a slideshow previously-uploaded on SlideShare
         services: 
             report: campaignchain.job.report.slideshare
         params: 
