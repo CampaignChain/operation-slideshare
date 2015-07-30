@@ -57,6 +57,7 @@ class SlideShareOperationType extends AbstractType
             'label' => false,
             'attr' => array(
                 'placeholder' => 'Select a slideshow',
+                'help_text' => 'Only slideshows that are private are being listed.',
             ),
         ));     
     }
