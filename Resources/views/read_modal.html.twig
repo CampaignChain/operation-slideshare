@@ -1,0 +1,24 @@
+{#
+This file is part of the CampaignChain package.
+
+(c) Sandro Groganz <sandro@campaignchain.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% extends 'CampaignChainCoreBundle:Base:base_modal.html.twig' %}
+
+{% block body %}
+    {% stylesheets '@campaignchain_operation_slideshare_css' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+
+    {% include 'CampaignChainCoreBundle:Operation:field_header.html.twig' %}
+
+    <div class="embed-responsive embed-responsive-16by9">
+    {{ slideshow_embed|raw }}
+    </div>
+    
+    {% include 'CampaignChainCoreBundle:Operation:field_footer.html.twig' %}
+{% endblock %}
