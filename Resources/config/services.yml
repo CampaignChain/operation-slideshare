@@ -6,13 +6,13 @@
 # file that was distributed with this source code.
 
 services:
-#    campaign_chain_operation_slide_share.example:
-#        class: CampaignChain\Operation\SlideShareBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     campaignchain.operation.slideshare.slideshow:
         class: CampaignChain\Operation\SlideShareBundle\EntityService\Slideshow
         arguments: [ @doctrine.orm.entity_manager ]
     campaignchain.job.operation.slideshare.publish_slideshow:
         class: CampaignChain\Operation\SlideShareBundle\Job\PublishSlideshow
+        arguments: [ @doctrine.orm.entity_manager, @service_container ]
+    campaignchain.job.report.slideshare.publish_slideshow:
+        class: CampaignChain\Operation\SlideShareBundle\Job\ReportPublishSlideshow
         arguments: [ @doctrine.orm.entity_manager, @service_container ]
         

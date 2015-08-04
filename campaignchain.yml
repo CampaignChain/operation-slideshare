@@ -3,12 +3,14 @@ modules:
     campaignchain-slideshare:
         display_name: Schedule private slideshow
         description: This module shedules a slideshow previously-uploaded on SlideShare
-        services: 
-            report: campaignchain.job.report.slideshare
+        services:
+            job: campaignchain.job.operation.slideshare.publish_slideshow
+            report: campaignchain.job.report.slideshare.publish_slideshow
         params: 
             owns_location: true
         metrics:
             activity:
                 - "Views"
-                - "Likes"
+                - "Favorites"
                 - "Downloads"
+                - "Comments"

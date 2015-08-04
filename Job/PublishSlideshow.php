@@ -59,6 +59,10 @@ class PublishSlideshow implements JobActionInterface
         if ($xml->SlideShowID == $slideshow->getIdentifier()) {
             $slideshow->getOperation()->setStatus(Action::STATUS_CLOSED);
 
+            // Schedule data collection for report
+            $report = $this->container->get('campaignchain.job.report.slideshare.publish_slideshow');
+            $report->schedule($slideshow->getOperation());
+
             $this->em->flush();
 
             $this->message = 'The slideshow with the URL "'.
