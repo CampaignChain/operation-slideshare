@@ -1,6 +1,6 @@
 {
     "name": "campaignchain/operation-slideshare",
-    "description": "Schedule SlideShare slideshow",
+    "description": "Operation to schedule a SlideShare slideshow.",
     "keywords": ["slideshare","campaignchain"],
     "type": "campaignchain-operation",
     "license": "Apache-2.0",
