@@ -5,6 +5,12 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
+parameters:
+    campaignchain.operation.slideshare.schedule:
+        bundle_name: "campaignchain/operation-slideshare"
+        module_identifier: "campaignchain-slideshare"
+        form_type: "CampaignChain\\Operation\\SlideShareBundle\\Form\\Type\\SlideShareOperationType"
+
 services:
     campaignchain.operation.slideshare.slideshow:
         class: CampaignChain\Operation\SlideShareBundle\EntityService\Slideshow
