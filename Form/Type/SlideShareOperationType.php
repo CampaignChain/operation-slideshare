@@ -19,7 +19,7 @@ class SlideShareOperationType extends OperationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('slideshow', 'choice', array(
-            'choices'   => $this->operationDetail,
+            'choices'   => $this->content,
             'required'  => true,
             'label' => false,
             'attr' => array(
