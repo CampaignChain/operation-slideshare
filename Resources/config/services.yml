@@ -8,7 +8,7 @@
 parameters:
     campaignchain.operation.slideshare.schedule:
         bundle_name: "campaignchain/operation-slideshare"
-        module_identifier: "campaignchain-gotowebinar"
+        module_identifier: "campaignchain-slideshare"
         form_type: "CampaignChain\\Operation\\SlideShareBundle\\Form\\Type\\SlideShareOperationType"
 
 services:
