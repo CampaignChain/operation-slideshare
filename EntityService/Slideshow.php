@@ -33,6 +33,7 @@ class Slideshow
 
         return $slideshow;
     }
+    
     public function removeOperation($id){
         try {
             $operation = $this->getSlideshowByOperation($id);
