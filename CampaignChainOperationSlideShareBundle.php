@@ -17,8 +17,13 @@
 
 namespace CampaignChain\Operation\SlideShareBundle;
 
+use CampaignChain\Operation\SlideShareBundle\DependencyInjection\CampaignChainOperationSlideShareExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class CampaignChainOperationSlideShareBundle extends Bundle
 {
+    public function getContainerExtension()
+    {
+        return new CampaignChainOperationSlideShareExtension();
+    }
 }
