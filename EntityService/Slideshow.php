@@ -17,9 +17,11 @@
 
 namespace CampaignChain\Operation\SlideShareBundle\EntityService;
 
+use CampaignChain\CoreBundle\Entity\Operation;
+use CampaignChain\CoreBundle\EntityService\OperationServiceInterface;
 use Doctrine\ORM\EntityManager;
 
-class Slideshow
+class Slideshow implements OperationServiceInterface
 {
     protected $em;
 
@@ -28,6 +30,17 @@ class Slideshow
         $this->em = $em;
     }
 
+    public function getContent(Operation $operation)
+    {
+        return $this->getSlideshowByOperation($operation->getId());
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Exception
+     * @deprecated Use getContent(Operation $operation) instead.
+     */
     public function getSlideshowByOperation($id){
         $slideshow = $this->em->getRepository('CampaignChainOperationSlideShareBundle:Slideshow')
             ->findOneByOperation($id);
@@ -49,5 +62,14 @@ class Slideshow
         } catch (\Exception $e) {
 
         }
+    }
+
+    public function cloneOperation(Operation $oldOperation, Operation $newOperation)
+    {
+        $content = $this->getContent($oldOperation);
+        $clonedContent = clone $content;
+        $clonedContent->setOperation($newOperation);
+        $this->em->persist($clonedContent);
+        $this->em->flush();
     }
 }
