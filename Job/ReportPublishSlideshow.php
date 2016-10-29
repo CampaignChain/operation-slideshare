@@ -19,7 +19,7 @@ namespace CampaignChain\Operation\SlideShareBundle\Job;
 
 use CampaignChain\CoreBundle\Entity\SchedulerReportOperation;
 use CampaignChain\CoreBundle\Job\JobReportInterface;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class ReportPublishSlideshow implements JobReportInterface
 {
@@ -34,9 +34,9 @@ class ReportPublishSlideshow implements JobReportInterface
     protected $message;
     protected $operation;
 
-    public function __construct(EntityManager $em, $container)
+    public function __construct(ManagerRegistry $managerRegistry, $container)
     {
-        $this->em = $em;
+        $this->em = $managerRegistry->getManager();
         $this->container = $container;
     }
 

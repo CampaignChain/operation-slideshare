@@ -19,15 +19,15 @@ namespace CampaignChain\Operation\SlideShareBundle\EntityService;
 
 use CampaignChain\CoreBundle\Entity\Operation;
 use CampaignChain\CoreBundle\EntityService\OperationServiceInterface;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class Slideshow implements OperationServiceInterface
 {
     protected $em;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->em = $em;
+        $this->em = $managerRegistry->getManager();
     }
 
     public function getContent(Operation $operation)
