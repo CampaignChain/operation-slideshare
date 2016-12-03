@@ -14,18 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 #}
 
-{% extends 'CampaignChainCoreBundle:Base:base_modal.html.twig' %}
+{% extends 'CampaignChainCoreBundle:Operation:read_modal.html.twig' %}
 
-{% block body %}
-    {% stylesheets '@campaignchain_operation_slideshare_css' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
-    {% endstylesheets %}
-
-    {% include 'CampaignChainCoreBundle:Operation:field_header.html.twig' %}
-
-    <div class="embed-responsive embed-responsive-16by9">
-    {{ slideshow_embed|raw }}
-    </div>
-    
-    {% include 'CampaignChainCoreBundle:Operation:field_footer.html.twig' %}
+{% block operation %}
+    {% include 'CampaignChainOperationSlideShareBundle::_read.html.twig' %}
 {% endblock %}
