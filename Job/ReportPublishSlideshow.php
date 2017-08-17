@@ -51,6 +51,7 @@ class ReportPublishSlideshow implements JobReportInterface
         $scheduler->setInterval('1 hour');
         $scheduler->setEndAction($operation->getActivity()->getCampaign());
         $this->em->persist($scheduler);
+        $this->em->flush();
 
         $facts[self::METRIC_VIEWS] = 0;
         $facts[self::METRIC_FAVORITES] = 0;
