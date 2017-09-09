@@ -19,7 +19,7 @@ namespace CampaignChain\Operation\SlideShareBundle\Form\Type;
 
 use CampaignChain\CoreBundle\Form\Type\OperationType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SlideShareOperationType extends OperationType
 {
@@ -36,7 +36,7 @@ class SlideShareOperationType extends OperationType
         ));     
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $defaults = array();
         $resolver->setDefaults($defaults);

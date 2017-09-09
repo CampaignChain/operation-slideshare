@@ -28,4 +28,10 @@ services:
     campaignchain.job.report.slideshare.publish_slideshow:
         class: CampaignChain\Operation\SlideShareBundle\Job\ReportPublishSlideshow
         arguments: [ '@doctrine', '@service_container' ]
-        
+    campaignchain.operation.slideshare.form.type.schedule:
+        class: CampaignChain\Operation\SlideShareBundle\Form\Type\SlideShareOperationType
+        arguments:
+            - '@doctrine'
+            - '@service_container'
+        tags:
+            - { name: form.type }
