@@ -25,8 +25,10 @@ class SlideShareOperationType extends OperationType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->setOptions($options);
+
         $builder->add('slideshow', 'choice', array(
-            'choices'   => $this->content,
+            'choices'   => $options['data'],
             'required'  => true,
             'label' => false,
             'attr' => array(
@@ -38,6 +40,8 @@ class SlideShareOperationType extends OperationType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
+
         $defaults = array();
         $resolver->setDefaults($defaults);
     }
